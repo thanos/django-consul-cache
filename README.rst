@@ -25,28 +25,18 @@ Install django-consul-cache::
 
     pip install django-consul-cache
 
-Add it to your `INSTALLED_APPS`:
+AModify your Django settings to use `django_consul_cache`:
 
 .. code-block:: python
 
-    INSTALLED_APPS = (
-        ...
-        'django_consul_cache.apps.DjangoConsulCacheConfig',
-        ...
-    )
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_consul_cache.ConsulCache',
+            'LOCATION': 'localhost:8500',
+        },
+    }
 
-Add django-consul-cache's URL patterns:
-
-.. code-block:: python
-
-    from django_consul_cache import urls as django_consul_cache_urls
-
-
-    urlpatterns = [
-        ...
-        url(r'^', include(django_consul_cache_urls)),
-        ...
-    ]
+django-redis-cache shares the same API as django's built-in cache backends
 
 Features
 --------
